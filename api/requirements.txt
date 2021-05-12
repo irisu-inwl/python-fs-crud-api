@@ -1,0 +1,4 @@
+flask
+uWSGI
+google-cloud-firestore
+mock-firestore
