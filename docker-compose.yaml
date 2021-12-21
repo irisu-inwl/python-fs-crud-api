@@ -4,9 +4,14 @@ services:
         image: fs-crud-api
         build: ./api/
         environment: 
-            APP_CONFIG: local
+            APP_CONFIG: ${APP_CONFIG}
+            GOOGLE_APPLICATION_CREDENTIALS: /var/credentials/application_credentials.json
+            PROJECT_ID: ${PROJECT_ID}
         volumes:
             - ${DIR}/api:/opt/crud-api
+            - ${GOOGLE_APPLICATION_CREDENTIALS}:/var/credentials/application_credentials.json
+        sysctls:
+            net.core.somaxconn: 10000
 
     nginx:
         image: fs-crud-nginx

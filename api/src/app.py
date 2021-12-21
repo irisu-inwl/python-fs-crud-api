@@ -14,8 +14,6 @@ def route_index():
 @app.route("/fs/<string:collection_id>/<string:doc_id>", methods=['GET'])
 def fs_get(collection_id, doc_id):
     response = {'success': True}
-    if request.method not in ['GET']:
-        abort(405, {'message': 'Method not allowed'})
 
     doc_ref = fs.collection(collection_id).document(doc_id)
     doc = doc_ref.get()
@@ -30,8 +28,6 @@ def fs_get(collection_id, doc_id):
 @app.route("/fs/<string:collection_id>/<string:doc_id>", methods=['POST'])
 def fs_post(collection_id, doc_id):
     response = {'success': True}
-    if request.method not in ['POST']:
-        abort(405, {'message': 'Method not allowed'})
 
     if request.headers.get('Content-Type') != 'application/json':
         abort(400, {'message': 'Content-Type is not application/json'})
@@ -50,8 +46,6 @@ def fs_post(collection_id, doc_id):
 @app.route("/fs/<string:collection_id>/<string:doc_id>", methods=['PUT'])
 def fs_put(collection_id, doc_id):
     response = {'success': True}
-    if request.method not in ['PUT']:
-        abort(405, {'message': 'Method not allowed'})
 
     if request.headers.get('Content-Type') != 'application/json':
         abort(400, {'message': 'Content-Type is not application/json'})
@@ -70,8 +64,6 @@ def fs_put(collection_id, doc_id):
 @app.route("/fs/<string:collection_id>/<string:doc_id>", methods=['DELETE'])
 def fs_delete(collection_id, doc_id):
     response = {'success': True}
-    if request.method not in ['DELETE']:
-        abort(405, {'message': 'Method not allowed'})
     
     doc_ref = fs.collection(collection_id).document(doc_id)
     doc_ref.delete()
